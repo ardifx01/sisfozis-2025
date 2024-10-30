@@ -21,6 +21,8 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Administrasi Surat';
 
+    protected static ?string $navigationLabel = 'Kategori';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -51,8 +53,11 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 //
-                Tables\Columns\TextColumn::make('name')->searchable(),
-                Tables\Columns\TextColumn::make('desc'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nama Kategori')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('desc')
+                    ->label('Keterangan'),
             ])
             ->filters([
                 //

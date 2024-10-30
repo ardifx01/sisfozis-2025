@@ -56,8 +56,16 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Administrasi Surat'),
                 NavigationGroup::make()
+                    ->label('Pengumpulan'),
+                NavigationGroup::make()
                     ->label('Pendistribusian Pendayagunaan'),
+                NavigationGroup::make()
+                    ->label('SDM'),
+                NavigationGroup::make()
+                    ->label('Setting'),
             ])
-            ->brandName('SISFOZIS 2025');;
+            ->brandName('SISFOZIS 2025')
+            ->sidebarCollapsibleOnDesktop()
+            ->collapsedSidebarWidth('9rem');
     }
 }
