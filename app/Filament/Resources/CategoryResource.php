@@ -6,6 +6,9 @@ use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -17,9 +20,9 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationIcon = 'heroicon-o-puzzle-piece';
 
-    protected static ?string $navigationGroup = 'Administrasi Surat';
+    protected static ?string $navigationGroup = 'e-Arsip';
 
     protected static ?string $navigationLabel = 'Kategori';
 
@@ -29,17 +32,17 @@ class CategoryResource extends Resource
             ->schema([
                 //
                 //card
-                Forms\Components\Card::make()
+                Section::make()
                     ->schema([
 
                         //name
-                        Forms\Components\TextInput::make('name')
+                        TextInput::make('name')
                             ->label('Nama Kategori')
                             ->placeholder('Nama Kategori..')
                             ->required(),
 
                         //description
-                        Forms\Components\Textarea::make('desc')
+                        Textarea::make('desc')
                             ->label('Keterangan')
                             ->placeholder('Keterangan')
                             ->rows(5),

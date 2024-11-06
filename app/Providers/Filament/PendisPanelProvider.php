@@ -17,27 +17,27 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Filament\Navigation\NavigationGroup;
 
-class AdminPanelProvider extends PanelProvider
+class PendisPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
-            ->id('admin')
-            ->path('admin')
-            ->login()
+            ->id('pendis')
+            ->path('pendis')
             ->colors([
-                'primary' => Color::Emerald,
+                'primary' => Color::Amber,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverResources(in: app_path('Filament/Pendis/Resources'), for: 'App\\Filament\\Pendis\\Resources')
+            ->discoverPages(in: app_path('Filament/Pendis/Pages'), for: 'App\\Filament\\Pendis\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([])
+            ->discoverWidgets(in: app_path('Filament/Pendis/Widgets'), for: 'App\\Filament\\Pendis\\Widgets')
+            ->widgets([
+                Widgets\AccountWidget::class,
+                Widgets\FilamentInfoWidget::class,
+            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -51,21 +51,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ])
-            ->navigationGroups([
-                NavigationGroup::make()
-                    ->label('e-Arsip'),
-                NavigationGroup::make()
-                    ->label('Pengumpulan'),
-                NavigationGroup::make()
-                    ->label('Pendistribusian Pendayagunaan'),
-                NavigationGroup::make()
-                    ->label('SDM'),
-                NavigationGroup::make()
-                    ->label('Setting'),
-            ])
-            ->brandName('SISFOZIS 2025')
-            ->sidebarCollapsibleOnDesktop()
-            ->collapsedSidebarWidth('9rem');
+            ]);
     }
 }
