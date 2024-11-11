@@ -24,7 +24,9 @@ class SuratMasuk extends Model
         'subject',
         'contact',
         'address',
-        'file'
+        'file',
+        'dept_disposition',
+        'desc_disposition'
     ];
 
     /**

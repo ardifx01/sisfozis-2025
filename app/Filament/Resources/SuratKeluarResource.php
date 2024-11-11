@@ -41,7 +41,10 @@ class SuratKeluarResource extends Resource
                         ->required(),
                     DatePicker::make('date_letter')
                         ->label('Tanggal Surat')
-                        ->required(),
+                        ->required()
+                        ->native(false)
+                        ->displayFormat('Y/m/d')
+                        ->prefixIcon('heroicon-o-calendar'),
                     TextInput::make('to_letter')
                         ->label('Tujuan')
                         ->required(),

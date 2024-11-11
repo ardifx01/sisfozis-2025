@@ -85,6 +85,22 @@ class SuratMasukResource extends Resource
                                 ->openable()
                                 ->preserveFilenames()
                                 ->columnSpan(2)
+                        ]),
+
+                    Fieldset::make('Disposisi Surat')
+                        ->schema([
+                            Select::make('dept_disposition')
+                                ->label('Disposisi Bagian')
+                                ->options([
+                                    'pengumpulan' => 'Pengumpulan',
+                                    'pendistribusian' => 'Pendistribusian',
+                                    'pendayagunaan' => 'Pendayagunaan',
+                                    'Keuangan' => 'Perencanaan,Keuangan dan Pelaporan',
+                                    'sdm' => 'Sumber Daya Manusia (SDM)',
+                                    'umum' => 'Umum dan HUMAS'
+                                ]),
+                            Textarea::make('desc_disposition')
+                                ->label('Keterangan Disposisi')
                         ])
                 ])
                     ->columns(2)
