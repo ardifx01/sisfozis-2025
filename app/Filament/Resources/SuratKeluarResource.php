@@ -98,7 +98,9 @@ class SuratKeluarResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->emptyStateHeading('Belum ada data surat keluar')
+            ->emptyStateDescription('Input data surat keluar terlebih dahulu.');;
     }
 
     public static function getRelations(): array

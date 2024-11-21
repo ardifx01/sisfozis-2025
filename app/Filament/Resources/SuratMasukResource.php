@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SuratMasukResource\Pages;
 use App\Filament\Resources\SuratMasukResource\RelationManagers;
 use App\Models\SuratMasuk;
+use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
@@ -158,7 +159,9 @@ class SuratMasukResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->emptyStateHeading('Belum ada data surat masuk')
+            ->emptyStateDescription('Input data surat masuk terlebih dahulu.');
     }
 
     public static function getRelations(): array

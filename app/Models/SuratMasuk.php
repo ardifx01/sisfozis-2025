@@ -38,4 +38,9 @@ class SuratMasuk extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function Pendis()
+    {
+        return $this->hasOne(pendis::class);
+    }
 }

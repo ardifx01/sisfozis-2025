@@ -25,6 +25,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->font('DM Sans')
             ->id('admin')
             ->path('admin')
             ->login()
@@ -58,7 +59,7 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Pengumpulan'),
                 NavigationGroup::make()
-                    ->label('Pendistribusian Pendayagunaan'),
+                    ->label('ZIStribusi'),
                 NavigationGroup::make()
                     ->label('SDM'),
                 NavigationGroup::make()
