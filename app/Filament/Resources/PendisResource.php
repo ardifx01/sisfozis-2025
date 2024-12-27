@@ -31,7 +31,7 @@ class PendisResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-gift';
 
-    protected static ?string $navigationGroup = 'ZIStribution';
+    protected static ?string $navigationGroup = 'ZIStribusi';
 
     protected static ?string $navigationLabel = 'Data Pendistribusian';
 
