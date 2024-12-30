@@ -67,6 +67,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->brandName('SISFOZIS 2025')
             ->sidebarCollapsibleOnDesktop()
-            ->collapsedSidebarWidth('9rem');
+            ->collapsedSidebarWidth('9rem')
+            ->plugins([
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
+            ]);
     }
 }
