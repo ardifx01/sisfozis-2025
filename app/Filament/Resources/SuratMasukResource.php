@@ -142,6 +142,12 @@ class SuratMasukResource extends Resource
                 TextColumn::make('address')
                     ->sortable()
                     ->label('Alamat'),
+                TextColumn::make('dept_disposition')
+                    ->sortable()
+                    ->label('Disposisi Bagian'),
+                TextColumn::make('desc_disposition')
+                    ->sortable()
+                    ->label('Keterangan Disposisi'),
                 TextColumn::make('file')
                     ->sortable()
                     ->label('File Upload'),
