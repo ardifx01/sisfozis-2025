@@ -119,6 +119,7 @@ class SuratMasukResource extends Resource
                     ->label('Jenis Surat'),
                 TextColumn::make('no_agenda')
                     ->sortable()
+                    ->searchable()
                     ->label('No Agenda'),
                 TextColumn::make('date_agenda')
                     ->sortable()
@@ -126,21 +127,24 @@ class SuratMasukResource extends Resource
                 TextColumn::make('date_letter')
                     ->sortable()
                     ->label('Tanggal Surat'),
-                TextColumn::make('from')
+                TextColumn::make('sender')
                     ->sortable()
+                    ->searchable()
                     ->label('Asal Surat'),
                 TextColumn::make('no_letter')
                     ->sortable()
+                    ->searchable()
                     ->label('Nomor Surat'),
                 TextColumn::make('subject')
                     ->sortable()
-                    ->label('Perihal')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Perihal'),
                 TextColumn::make('contact')
                     ->sortable()
                     ->label('Kontak'),
                 TextColumn::make('address')
                     ->sortable()
+                    ->searchable()
                     ->label('Alamat'),
                 TextColumn::make('dept_disposition')
                     ->sortable()

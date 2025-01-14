@@ -79,8 +79,8 @@ class SuratKeluarResource extends Resource
                 TextColumn::make('date_letter')
                     ->sortable()
                     ->label('Tanggal Surat'),
-                TextColumn::make('to_letter')->sortable()->label('Tujuan'),
-                TextColumn::make('no_letter')->sortable()->label('Nomor Surat'),
+                TextColumn::make('to_letter')->sortable()->label('Tujuan')->searchable(),
+                TextColumn::make('no_letter')->sortable()->label('Nomor Surat')->searchable(),
                 TextColumn::make('subject')->sortable()->label('Perihal')->searchable(),
                 TextColumn::make('file')->sortable()->label('File Upload'),
                 TextColumn::make('created_at')->sortable(),
