@@ -69,7 +69,7 @@ class SuratMasukResource extends Resource
                         ]),
                     Fieldset::make('Detail Surat')
                         ->schema([
-                            TextInput::make('from')
+                            TextInput::make('sender')
                                 ->label('Asal Surat')
                                 ->required(),
                             TextInput::make('no_letter')
