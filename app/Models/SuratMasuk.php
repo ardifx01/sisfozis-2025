@@ -19,7 +19,7 @@ class SuratMasuk extends Model
         'no_agenda',
         'date_agenda',
         'date_letter',
-        'from',
+        'sender',
         'no_letter',
         'subject',
         'contact',
