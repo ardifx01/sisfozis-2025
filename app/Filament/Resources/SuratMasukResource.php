@@ -170,7 +170,8 @@ class SuratMasukResource extends Resource
                 ]),
             ])
             ->emptyStateHeading('Belum ada data surat masuk')
-            ->emptyStateDescription('Input data surat masuk terlebih dahulu.');
+            ->emptyStateDescription('Input data surat masuk terlebih dahulu.')
+            ->defaultSort('date_agenda', 'asc');
     }
 
     public static function getRelations(): array
