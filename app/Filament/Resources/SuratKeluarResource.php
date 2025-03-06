@@ -100,7 +100,7 @@ class SuratKeluarResource extends Resource
             ])
             ->emptyStateHeading('Belum ada data surat keluar')
             ->emptyStateDescription('Input data surat keluar terlebih dahulu.')
-            ->defaultSort('date_letter', 'asc');
+            ->defaultSort('date_letter', 'desc');
     }
 
     public static function getRelations(): array
