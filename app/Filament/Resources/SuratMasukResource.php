@@ -118,7 +118,10 @@ class SuratMasukResource extends Resource
                     ->sortable()
                     ->label('Jenis Surat'),
                 TextColumn::make('no_agenda')
-                    ->sortable()
+                    ->sortable(query: function (Builder $query, string $direction): Builder {
+                        // Gunakan regex untuk mengekstrak angka di awal string
+                        return $query->orderByRaw("CAST(REGEXP_REPLACE(no_agenda, '[^0-9].*$', '') AS INTEGER) {$direction}, no_agenda {$direction}");
+                    })
                     ->searchable()
                     ->label('No Agenda'),
                 TextColumn::make('date_agenda')
