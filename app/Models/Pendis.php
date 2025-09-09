@@ -10,14 +10,17 @@ class Pendis extends Model
     use HasFactory;
 
     protected $fillable = [
+        'status',
         'no_ref',
         'application_date',
         'applicant_type',
         'applicant_name',
         'beneficiary',
         'district',
+        'village',
         'fund_type',
         'program',
+        'cat_program',
         'asnaf',
         'subject',
         'financial_aid',
@@ -31,11 +34,23 @@ class Pendis extends Model
     ];
 
     protected $casts = [
-        'beneficiary' => 'array', // Konversi data JSON menjadi array PHP
+        'beneficiary' => 'array',
+        'application_date' => 'date',
+        'distribution_date' => 'date', // Konversi data JSON menjadi array PHP
     ];
 
     public function suratmasuk()
     {
         return $this->belongsTo(SuratMasuk::class);
+    }
+
+    public function program_relation()
+    {
+        return $this->belongsTo(Program::class, 'program');
+    }
+
+    public function sub_program_relation()
+    {
+        return $this->belongsTo(SubProgram::class, 'cat_program');
     }
 }

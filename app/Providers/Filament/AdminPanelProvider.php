@@ -25,7 +25,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->font('Inter')
+            ->font('Work Sans')
             ->id('admin')
             ->path('admin')
             ->login()
@@ -65,11 +65,14 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Setting'),
             ])
-            ->brandName('SISFOZIS 2025')
+            //->brandName('SISFOZIS 2025')
             ->sidebarCollapsibleOnDesktop()
             ->collapsedSidebarWidth('9rem')
             ->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
-            ]);
+            ])
+            ->brandLogo(asset('images/Logo.png'))
+            ->brandLogoHeight('2.5rem')
+            ->favicon(asset('images/favicon.png'));
     }
 }

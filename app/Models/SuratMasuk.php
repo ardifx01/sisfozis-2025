@@ -24,6 +24,8 @@ class SuratMasuk extends Model
         'subject',
         'contact',
         'address',
+        'district',
+        'village',
         'file',
         'dept_disposition',
         'desc_disposition'
@@ -42,5 +44,10 @@ class SuratMasuk extends Model
     public function Pendis()
     {
         return $this->hasOne(pendis::class);
+    }
+
+    public function Pendag()
+    {
+        return $this->hasOne(Pendag::class);
     }
 }

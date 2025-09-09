@@ -38,6 +38,7 @@ class CategoryResource extends Resource
                         //name
                         TextInput::make('name')
                             ->label('Nama Kategori')
+                            ->autocapitalize('sentences')
                             ->placeholder('Nama Kategori..')
                             ->required(),
 

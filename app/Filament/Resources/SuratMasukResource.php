@@ -3,11 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SuratMasukResource\Pages;
-use App\Filament\Resources\SuratMasukResource\RelationManagers;
 use App\Models\SuratMasuk;
-use Filament\Actions\Action;
-use Filament\Actions\DeleteAction;
-use Filament\Forms;
+use Dom\Text;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
@@ -15,19 +12,13 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Wizard;
 use Filament\Forms\Form;
-use Filament\Infolists\Components\Fieldset as ComponentsFieldset;
-use Filament\Infolists\Components\Section as ComponentsSection;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-use function Laravel\Prompts\select;
 
 class SuratMasukResource extends Resource
 {
@@ -49,10 +40,22 @@ class SuratMasukResource extends Resource
                         ->schema([
                             TextInput::make('no_agenda')
                                 ->label('No Agenda')
+                                ->prefix('#')
                                 ->required(),
                             Select::make('category_id')
                                 ->label('Jenis Surat')
                                 ->relationship('category', 'name')
+                                ->createOptionForm(
+                                    fn(Form $form) => $form
+                                        ->schema([
+                                            TextInput::make('name')
+                                                ->label('Nama Kategori')
+                                                ->required(),
+                                            TextInput::make('description')
+                                                ->label('Deskripsi Kategori')
+                                                ->required()
+                                        ])
+                                )
                                 ->required(),
                             DatePicker::make('date_agenda')
                                 ->label('Tanggal Agenda')
@@ -70,6 +73,7 @@ class SuratMasukResource extends Resource
                     Fieldset::make('Detail Surat')
                         ->schema([
                             TextInput::make('sender')
+                                ->autocapitalize('sentences')
                                 ->label('Asal Surat')
                                 ->required(),
                             TextInput::make('no_letter')
@@ -78,6 +82,46 @@ class SuratMasukResource extends Resource
                                 ->label('No Kontak'),
                             TextInput::make('address')
                                 ->label('Alamat'),
+                            TextInput::make('district')
+                                ->label('Kecamatan')
+                                ->datalist([
+                                    'Cianjur',
+                                    'Cugenang',
+                                    'Pacet',
+                                    'Sukaresmi',
+                                    'Karangtengah',
+                                    'Warungkondang',
+                                    'Gekbrong',
+                                    'Cibeber',
+                                    'Cilaku',
+                                    'Mande',
+                                    'Ciranjang',
+                                    'Bojongpicung',
+                                    'Haurwangi',
+                                    'Campaka',
+                                    'Campakamulya',
+                                    'Tanggeung',
+                                    'Cibinong',
+                                    'Cikadu',
+                                    'Kadupandak',
+                                    'Pagelaran',
+                                    'Sindangbarang',
+                                    'Cidaun',
+                                    'Naringgul',
+                                    'Agrabinta',
+                                    'Leles',
+                                    'Takokak',
+                                    'Sukanagara',
+                                    'Cijati',
+                                    'Cikalongkulon',
+                                    'Pasirkuda',
+                                    'Cipanas',
+                                    'Sukaluyu'
+                                ])
+                                ->required(),
+                            TextInput::make('village')
+                                ->label('Desa')
+                                ->autocomplete(),
                             Textarea::make('subject')
                                 ->columnSpan(2)
                                 ->label('Perihal'),
@@ -93,12 +137,12 @@ class SuratMasukResource extends Resource
                             Select::make('dept_disposition')
                                 ->label('Disposisi Bagian')
                                 ->options([
-                                    'pengumpulan' => 'Pengumpulan',
-                                    'pendistribusian' => 'Pendistribusian',
-                                    'pendayagunaan' => 'Pendayagunaan',
+                                    'Pengumpulan' => 'Pengumpulan',
+                                    'Pendistribusian' => 'Pendistribusian',
+                                    'Pendayagunaan' => 'Pendayagunaan',
                                     'Keuangan' => 'Perencanaan,Keuangan dan Pelaporan',
-                                    'sdm' => 'Sumber Daya Manusia (SDM)',
-                                    'umum' => 'Umum dan HUMAS'
+                                    'SDM' => 'Sumber Daya Manusia (SDM)',
+                                    'Umum' => 'Umum dan HUMAS'
                                 ]),
                             Textarea::make('desc_disposition')
                                 ->label('Keterangan Disposisi')
@@ -149,6 +193,14 @@ class SuratMasukResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->label('Alamat'),
+                TextColumn::make('district')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Kecamatan'),
+                TextColumn::make('village')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Desa'),
                 TextColumn::make('dept_disposition')
                     ->sortable()
                     ->label('Disposisi Bagian'),
